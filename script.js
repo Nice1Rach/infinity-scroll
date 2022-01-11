@@ -19,10 +19,10 @@ function updateAPIURLWithNewCount(picCount) {
 }
 
 // Check if all images were loaded
-function imageLoaded() {
+function hasImageLoaded() {
     imagesLoaded++;
     if (imagesLoaded === totalImages) {
-        ready = true;
+        loadDone = true;
         loader.hidden = true;
     }
 }
@@ -32,7 +32,16 @@ function setAttributes(element, attributes) {
     for (const key in attributes) {
         element.setAttribute(key, attributes[key]);
     }
-}
+};
+const getColHeights = () => {
+    let colHeights = [cols[0].clientHeight, cols[1].clientHeight, cols[2].clientHeight];
+    const visibleColHeight = colHeights.filter((height) => height);
+    return visibleColHeight;
+};
+const findShorterCol = () => {
+    const heights = getColHeights();
+    return heights.indexOf(Math.min(...heights));
+};
 
 // Create Elements for Links & Photos, Add to DOM
 function displayPhotos() {
@@ -56,17 +65,29 @@ function displayPhotos() {
         });
 
         // Event Listener, check when each is finished loading
-        img.addEventListener('load', imageLoaded);
+        img.addEventListener('load', hasImageLoaded);
 
         // Put <img> inside <a>, then put both inside imageContainer Element
         item.appendChild(img);
-        imageContainer.appendChild(item);
+        setTimeout(() => {
+            if (colShownNum === 3) {
+                //append image in shorter column
+                const ShorterColIndex = findShorterCol();
+                cols[shorterColIndex].appendChild(item);
+            } else {
+                cols[index % 3].appendChild(item);
+            }
+        }, 100 * index);
 
     });
-}
+};
 
 // Get Photos from Unsplash API
-async function getPhotos() {
+const getPhotos = async () {
+    loadDone = false;
+    loader.hidden = false;
+    errorMessage.style.display = 'none';
+    
     try {
         const response = await fetch(apiUrl);
         photos = await response.json();
@@ -78,15 +99,27 @@ async function getPhotos() {
     loader.hidden = true;
     console.log('getPhoto error', error);
     }
-}
-
+};
+// Get  grid column number
+window.addEventListener('resize', () => {
+    if (getColHeights().length !== colShownNum) {
+        colShownNum = getColHeights().length;
+    }
+});
 // Check to see if scrolling near bottom of page, Load More Photos
 window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
-        ready = false;
-        getPhotos();    
+    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight && loadDone) {
+        checkScrollBottomAfter1Sec();    
     }
 });
 
+const checkScrollBottomAfter1Sec = () => {
+    setTimeout(() => {
+        if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight && loadDone) {
+            console.log('load more...');
+            getPhotos();
+        }
+    }, 1000);
+};
 // On Load
 getPhotos();
