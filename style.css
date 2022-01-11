@@ -47,43 +47,37 @@ h1 {
     color: lightgray;
 }
 
-
-
-/* Loader */
-
-.loader {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.8);
+#loader-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
 }
 
-.loader img {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#loader svg text {
+    fill: lightgray;
 }
 
-/* Image Container */
-.image-container {
-    margin: 10px;
-}
-
-.image-container img {
-    width: 100%;
-    margin-top: 5px;
-}
-
-/* Media Query: Large Smartphone*/
-@media screen and (max-width: 600px) {
-    h1 {
-        font-size: 20px;
+@media (min-width: 600px) {
+    body {
+        padding: 20px 50px;
     }
+    .grid-col {
+        width: 50%;
+    }
+    .grid-col--2 {
+        display:block;
+    }
+}
 
-    .image-container {
-        margin: 10px;
+@media (min-width: 1000px) {
+    body {
+        padding: 20px 80px;
+    }
+    .grid-col {
+        width: 33.3%;
+    }
+    .grid-col--2,
+    .grid-col--3 {
+        display: block;
     }
 }
