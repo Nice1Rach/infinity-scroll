@@ -84,6 +84,7 @@ const getPhotos = async () => {
     errorMessage.style.display = 'none';
     
     try {
+        const response = await fetch(apiUrl);
         photos = await response.json();
         displayPhotos();
     } catch (error) {
