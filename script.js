@@ -1,14 +1,16 @@
 const imageContainer = document.getElementById('image-container');
+const cols = document.querySelectorAll('.grid-col');
 const loader = document.getElementById('loader');
+const errorMessage = document.getElementById('error-message';
 
-let ready = false;
-let imagesLoaded = 0;
-let totalImages = 0;
-let photosArray = [];
-let isInitialLoad = true;
+let colShownNum = 0;                                         
+let imagesLoaded;
+let totalImages;
+let photo = [];
+let loadDone = false;
 
 // Unsplash API
-let count = 5;
+const count = 30;
 const apiKey = 'OZW-0mtx97tbtHI6GQAa6e9iSJNfq_yhrfDMCR47A5A';
 let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&YOUR_ACCESS_KEY&count=${count}`;
 
@@ -67,14 +69,14 @@ function displayPhotos() {
 async function getPhotos() {
     try {
         const response = await fetch(apiUrl);
-        photosArray = await response.json();
+        photos = await response.json();
         displayPhotos();
-        if (isInitialLoad) {
-            updateAPIURLWithNewCount(30);
-            isInitialLoad = false;
-        }
     } catch (error) {
-        // Catch Error Here
+       errorMessage.textContent = 'error : api usage limit exceeded , try again after an hour ';
+    errorMessage.style.display = 'block';
+    loadDone = true;
+    loader.hidden = true;
+    console.log('getPhoto error', error);
     }
 }
 
