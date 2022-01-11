@@ -18,6 +18,37 @@ h1 {
     letter-spacing: 5px;
 }
 
+.grid:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.grid img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.grid-col--2,
+.grid-col--3 {
+    display: none;
+}
+
+.grid-item {
+    margin-bottom: 20px;
+}
+
+#error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid lightgray;
+    color: lightgray;
+}
+
+
+
 /* Loader */
 
 .loader {
