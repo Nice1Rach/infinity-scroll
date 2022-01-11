@@ -9,21 +9,19 @@ body {
     min-height: 100vh;
     padding: 20px;
     background-color: rgb(4, 24, 13);
-    text-align: center;
-    font-size: 50px;
 }
 
 #title {
     font-family: Bebas Neue, sans-serif;
     color: rgb(223, 98, 98);
     text-align: center;
-    font-size: 50px;
+    font-size: 100px;
 }
 
 #title-sub {
     font-family: Bebas Neue, sans-serif;
     color: whitesmoke;
-    font-size: 25px;
+    font-size: 50px;
     text-align: center;
 }
 
