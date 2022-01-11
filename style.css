@@ -63,6 +63,10 @@ body {
     padding-bottom: 100px;
 }
 
+#loader svg text {
+    fill: lightgray;
+}
+
 @media (min-width: 600px) {
     body {
         padding: 20px 50px;
