@@ -46,11 +46,12 @@ const findShorterCol = () => {
 // Create Elements for Links & Photos, Add to DOM
 function displayPhotos() {
     imagesLoaded = 0;
-    totalImages = photosArray.length;
+    totalImages = photos.length;
     // Run function for each object in photosArray
-    photosArray.forEach((photo) => {
+    photos.forEach((photo, index) => {
     // Create <a> to link to Unsplash 
     const item = document.createElement('a');
+    item.className = `grid-item ${index}`;
     setAttributes(item, {
         href: photo.links.html,
         target: '_blank',
