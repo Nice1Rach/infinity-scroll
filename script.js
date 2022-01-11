@@ -84,7 +84,7 @@ const getPhotos = async () => {
     errorMessage.style.display = 'none';
     
     try {
-        photos = await response.json();
+        getPhotos = await response.json();
         displayPhotos();
     } catch (error) {
        errorMessage.textContent = 'error : api usage limit exceeded , try again after an hour ';
