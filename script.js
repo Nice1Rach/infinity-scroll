@@ -23,7 +23,7 @@ function hasImageLoaded() {
 }
 
 // Helper Function to set Attributes on DOM Elements
-const setAttributes(el, attrs) => {
+const setAttributes = (el, attrs) => {
     for (var key in attrs) {
         el.setAttribute(key, attrs[key]);
     }
@@ -39,7 +39,7 @@ const findShorterCol = () => {
 };
 
 // Create Elements for Links & Photos, Add to DOM
-const displayPhotos() => {
+const displayPhotos = () => {
     imagesLoaded = 0;
     totalImages = photos.length;
     // Run function for each object in photosArray
@@ -62,8 +62,6 @@ const displayPhotos() => {
 
         // Event Listener, check when each is finished loading
         img.addEventListener('load', hasImageLoaded);
-
-        // Put <img> inside <a>, then put both inside imageContainer Element
         item.appendChild(img);
         setTimeout(() => {
             if (colShownNum === 3) {
@@ -85,7 +83,6 @@ const getPhotos = async () => {
     errorMessage.style.display = 'none';
     
     try {
-        const response = await fetch(apiUrl);
         photos = await response.json();
         displayPhotos();
     } catch (error) {
