@@ -15,8 +15,8 @@ const count = 30;
 
 // Check if all images were loaded
 function hasImageLoaded() {
-    imageLoaded++;
-    if (imageLoaded === totalImages) {
+    imagesLoaded++;
+    if (imagesLoaded === totalImages) {
         loadDone = true;
         loader.hidden = true;
     }
