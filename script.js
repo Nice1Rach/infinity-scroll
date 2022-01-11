@@ -2,21 +2,16 @@ const imageContainer = document.getElementById('image-container');
 const cols = document.querySelectorAll('.grid-col');
 const loader = document.getElementById('loader');
 const errorMessage = document.getElementById('error-message';
-
-let colShownNum = 0;                                         
+let colShownNum = 0;
+let photos = [];                                           
 let imagesLoaded;
 let totalImages;
-let photo = [];
 let loadDone = false;
 
 // Unsplash API
-const count = 30;
 const apiKey = 'OZW-0mtx97tbtHI6GQAa6e9iSJNfq_yhrfDMCR47A5A';
-let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&YOUR_ACCESS_KEY&count=${count}`;
-
-function updateAPIURLWithNewCount(picCount) {
-    apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${picCount}`;
-}
+const count = 30;
+const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&YOUR_ACCESS_KEY&count=${count}`;
 
 // Check if all images were loaded
 function hasImageLoaded() {
@@ -28,9 +23,9 @@ function hasImageLoaded() {
 }
 
 // Helper Function to set Attributes on DOM Elements
-function setAttributes(element, attributes) {
-    for (const key in attributes) {
-        element.setAttribute(key, attributes[key]);
+const setAttributes(el, attrs) => {
+    for (var key in attrs) {
+        el.setAttribute(key, attrs[key]);
     }
 };
 const getColHeights = () => {
@@ -44,7 +39,7 @@ const findShorterCol = () => {
 };
 
 // Create Elements for Links & Photos, Add to DOM
-function displayPhotos() {
+const displayPhotos() => {
     imagesLoaded = 0;
     totalImages = photos.length;
     // Run function for each object in photosArray
@@ -84,7 +79,7 @@ function displayPhotos() {
 };
 
 // Get Photos from Unsplash API
-const getPhotos = async () {
+const getPhotos = async () => {
     loadDone = false;
     loader.hidden = false;
     errorMessage.style.display = 'none';
