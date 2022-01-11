@@ -8,16 +8,18 @@ body {
     margin: 0;
     min-height: 100vh;
     padding: 20px;
-    font-family: Bebas Neue, sans-serif;
     background-color: rgb(4, 24, 13);
 }
 
-h1 {
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 35px;
-    letter-spacing: 5px;
+#title {
+    font-family: Bebas Neue, sans-serif;
+    color: rgb(223, 98, 98);
+}
+
+#title-sub {
+    font-family: Bebas Neue, sans-serif;
+    color: gray;
+    font-size: 25px;
 }
 
 .grid:after {
@@ -27,6 +29,12 @@ h1 {
 }
 
 .grid img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.grid-col {
+    float: left;
     width: 100%;
     border-radius: 10px;
 }
@@ -53,10 +61,6 @@ h1 {
     display: flex;
     justify-content: center;
     padding-bottom: 100px;
-}
-
-#loader svg text {
-    fill: lightgray;
 }
 
 @media (min-width: 600px) {
