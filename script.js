@@ -1,7 +1,7 @@
 const imageContainer = document.getElementById('image-container');
 const cols = document.querySelectorAll('.grid-col');
 const loader = document.getElementById('loader');
-const errorMessage = document.getElementById('error-message';
+const errorMessage = document.getElementById('error-message');
 let colShownNum = 0;
 let photos = [];                                           
 let imagesLoaded;
